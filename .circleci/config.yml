@@ -42,6 +42,4 @@ jobs:
       - type: shell
         command: |
           bundle exec rspec --profile 10 \
-                            --format RspecJunitFormatter \
-                            --out /tmp/test-results/rspec.xml \
                             --format progress
