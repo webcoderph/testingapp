@@ -21,16 +21,15 @@ jobs:
 
       # Restore bundle cache
       - type: cache-restore
-        # remove space between { {
-        key: testingapp-{ { checksum "Gemfile.lock" }}
+
+        key: testingapp-{{ checksum "Gemfile.lock" }}
 
       # Bundle install dependencies
       - run: bundle install --path vendor/bundle
 
       # Store bundle cache
       - type: cache-save
-        # remove space between { {
-        key: testingapp-{ { checksum "Gemfile.lock" }}
+        key: testingapp-{{ checksum "Gemfile.lock" }}
         paths:
           - vendor/bundle
 
@@ -43,3 +42,6 @@ jobs:
         command: |
           bundle exec rspec --profile 10 \
                             --format progress
+
+      - type: store_test_results
+        path: /tmp/test-results
